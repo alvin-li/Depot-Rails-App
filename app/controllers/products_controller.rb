@@ -28,7 +28,7 @@ class ProductsController < ApplicationController
 
     respond_to do |format|
       if @product.save
-        format.html { redirect_to @product, notice: 'Product was successfully created.' }
+        format.html { redirect_to @product, notice: 'Product was created successfully.' }
         format.json { render :show, status: :created, location: @product }
       else
         format.html { render :new }
@@ -63,7 +63,7 @@ class ProductsController < ApplicationController
 
   # Feed of orders
   def who_bought
-    @product = Product.find(params[:id])
+    @product = Product.find(params[:id].to_i)
     @latest_order = @product.orders.order(:updated_at).last
     if stale?(@latest_order)
       respond_to do |format|
@@ -77,7 +77,7 @@ class ProductsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_product
-      @product = Product.find(params[:id])
+      @product = Product.find(params[:id].to_i)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
