@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(version: 20141030033651) do
   create_table "carts", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string "product_id"
   end
 
   create_table "line_items", force: true do |t|
