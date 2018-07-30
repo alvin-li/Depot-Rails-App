@@ -4,13 +4,11 @@ class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
 
   # GET /orders
-  # GET /orders.json
   def index
     @orders = Order.all
   end
 
-  # GET /orders/1
-  # GET /orders/1.json
+  # GET /orders/:id
   def show
   end
 
@@ -24,12 +22,11 @@ class OrdersController < ApplicationController
     @order = Order.new
   end
 
-  # GET /orders/1/edit
+  # GET /orders/:id/edit
   def edit
   end
 
   # POST /orders
-  # POST /orders.json
   def create
     @order = Order.new(order_params)
     @order.add_line_items_from_cart(@cart)
@@ -49,8 +46,7 @@ class OrdersController < ApplicationController
     end
   end
 
-  # PATCH/PUT /orders/1
-  # PATCH/PUT /orders/1.json
+  # PATCH/PUT /orders/:id
   def update
     respond_to do |format|
       if @order.update(order_params)
@@ -63,8 +59,7 @@ class OrdersController < ApplicationController
     end
   end
 
-  # DELETE /orders/1
-  # DELETE /orders/1.json
+  # DELETE /orders/:id
   def destroy
     @order.destroy
     respond_to do |format|
