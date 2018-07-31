@@ -42,7 +42,7 @@ class CartsController < ApplicationController
         format.html { redirect_to @cart, notice: 'Cart was successfully updated.' }
         format.json { render :show, status: :ok, location: @cart }
       else
-        format.html { render :edit }
+        format.html { redirect_to @cart, flash: {error: @cart.errors.full_messages.join("\n") } }
         format.json { render json: @cart.errors, status: :unprocessable_entity }
       end
     end
@@ -72,6 +72,6 @@ class CartsController < ApplicationController
 
     def invalid_cart
       logger.error "Attempt to access invalid cart #{params[:id]}"
-      redirect_to store_url, notice: "Invalid Cart '#{params[:id]}'"
+      redirect_to store_url, notice: "Invalid Cart #{params[:id]}"
     end
 end
