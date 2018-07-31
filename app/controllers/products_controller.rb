@@ -25,7 +25,7 @@ class ProductsController < ApplicationController
 
     respond_to do |format|
       if @product.save
-        format.html { redirect_to @product, notice: 'Product was created successfully.' }
+        format.html { redirect_to @product, notice: 'Product was successfully created.' }
         format.json { render :show, status: :created, location: @product }
       else
         format.html { render :new }
@@ -41,7 +41,7 @@ class ProductsController < ApplicationController
         format.html { redirect_to @product, notice: 'Product was successfully updated.' }
         format.json { render :show, status: :ok, location: @product }
       else
-        format.html { render :edit }
+        format.html { redirect_to @product, flash: {error: @product.errors.full_messages.join("\n") } }
         format.json { render json: @product.errors, status: :unprocessable_entity }
       end
     end
