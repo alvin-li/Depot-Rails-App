@@ -2,13 +2,11 @@ class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
 
   # GET /products
-  # GET /products.json
   def index
     @products = Product.all
   end
 
-  # GET /products/1
-  # GET /products/1.json
+  # GET /products/:id
   def show
   end
 
@@ -17,12 +15,11 @@ class ProductsController < ApplicationController
     @product = Product.new
   end
 
-  # GET /products/1/edit
+  # GET /products/:id/edit
   def edit
   end
 
   # POST /products
-  # POST /products.json
   def create
     @product = Product.new(product_params)
 
@@ -37,22 +34,20 @@ class ProductsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /products/1
-  # PATCH/PUT /products/1.json
+  # PATCH/PUT /products/:id
   def update
     respond_to do |format|
       if @product.update(product_params)
         format.html { redirect_to @product, notice: 'Product was successfully updated.' }
         format.json { render :show, status: :ok, location: @product }
       else
-        format.html { render :edit }
+        format.html { redirect_to @product, flash: {error: @product.errors.full_messages.join("\n") } }
         format.json { render json: @product.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # DELETE /products/1
-  # DELETE /products/1.json
+  # DELETE /products/:id
   def destroy
     @product.destroy
     respond_to do |format|
@@ -63,7 +58,7 @@ class ProductsController < ApplicationController
 
   # Feed of orders
   def who_bought
-    @product = Product.find(params[:id])
+    @product = Product.find(params[:id].to_i)
     @latest_order = @product.orders.order(:updated_at).last
     if stale?(@latest_order)
       respond_to do |format|
@@ -77,7 +72,7 @@ class ProductsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_product
-      @product = Product.find(params[:id])
+      @product = Product.find(params[:id].to_i)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

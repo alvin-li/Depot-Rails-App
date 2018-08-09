@@ -27,6 +27,9 @@ config/master.key
 /.bundle
 /vendor/bundle
 
+# test files
+/test/*
+
 .rvmrc
 
 # ignore default bower_components
