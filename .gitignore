@@ -1,15 +1,23 @@
 *.rbc
 capybara-*.html
+
 .rspec
+
+# ignore logs and tmp files
 /log
 /tmp
+
+# ignore temporary files used by sqlite
 /db/*.sqlite3
 /db/*.sqlite3-journal
+
 /public/system
 /coverage/
 /spec/tmp
+
 *.orig
 rerun.txt
+
 pickle-email-*.html
 
 config/initializers/secret_token.rb
@@ -37,4 +45,7 @@ bower.json
 
 # Ignore node_modules
 node_modules/
+
+# Ignore database dump
+dump.rdb
 
