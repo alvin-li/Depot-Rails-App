@@ -11,6 +11,7 @@ class Cart < ActiveRecord::Base
 		current_item
 	end
 
+  # @return [Float] - The sum of the prices of all line items currently in the cart
   def total_price
     line_items.to_a.sum { |item| item.total_price }
   end
