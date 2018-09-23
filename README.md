@@ -5,4 +5,4 @@ Most of the code is following alongside the textbook
 
 # Requirements
 `Ruby 2.5.1`
-`Rails 4.2.7.1`
+`Rails 5.2.1`
