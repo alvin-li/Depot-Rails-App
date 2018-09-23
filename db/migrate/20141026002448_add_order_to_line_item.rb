@@ -1,4 +1,4 @@
-class AddOrderToLineItem < ActiveRecord::Migration[5.2]
+class AddOrderToLineItem < ActiveRecord::Migration
   def change
     add_reference :line_items, :order, index: true
   end
