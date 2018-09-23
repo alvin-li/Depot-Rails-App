@@ -12,6 +12,7 @@ class Product < ActiveRecord::Base
     message: 'must be a URL for GIF, JPG, or PNG image.'
   }
 
+  # Does this really need to be a method?
   def self.latest
     Product.order(:updated_at).last
   end
